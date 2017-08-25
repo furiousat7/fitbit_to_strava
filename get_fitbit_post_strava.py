@@ -1,4 +1,3 @@
-import fitbit_keys
 import urllib2
 import urllib
 import base64
@@ -11,6 +10,7 @@ class fitbit_api:
 
 
 	def _prepare_strava_packet(self, response):		
+		import pdb;pdb.set_trace()
 		response = json.loads(response)
 		packet_for_strava = []
 		
@@ -76,8 +76,9 @@ class fitbit_api:
 			response = urllib2.urlopen(request).read()      			
 			json_output = json.loads(response)
 			self.update_tokens(json_output)
-			response = self.doApiCall()
+			response = self.doApiCall()			
 			print response
+			return response
 		except urllib2.URLError as e:
 			print '-----Refresh token invalid----\n'
 			if e.code == 400:
@@ -114,7 +115,7 @@ class fitbit_api:
 
 
 if __name__ == '__main__':
-	
+	import pdb;pdb.set_trace()
 	obj = fitbit_api()	
 	obj.read_data()
 
